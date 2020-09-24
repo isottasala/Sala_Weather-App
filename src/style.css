@@ -1,5 +1,5 @@
 body {
-  font-family: arial, sans-serif;
+  font-family: arial, helvetica, sans-serif;
 }
 .weather-app {
   max-width: 600px;
@@ -30,6 +30,9 @@ li {
   font-weight: 100;
   line-height: 19.2px;
 }
+li:first-letter {
+  text-transform: capitalize;
+}
 .overview {
   margin-bottom: 20px;
 }
@@ -39,7 +42,7 @@ li {
   height: 64px;
   width: 64px;
 }
-.weather-temperature strong {
+.weather-temperature .strong {
   color: rgb(33, 33, 33);
   font-size: 64px;
   font-weight: 400px;
