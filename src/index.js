@@ -59,20 +59,32 @@ function displayForecast(response) {
   forecastElement.innerHTML = null;
   let forecast = null;
 
-  for (let index = 0; index < 6; index++) {
-    let forecast = response.data.list[index];
-    forecastElement.innerHTML += `
+  for (let index = 0; index < response.data.list.length; index++) {
+    if (
+      index === 9 ||
+      index === 17 ||
+      index === 25 ||
+      index === 33 ||
+      index === 41 ||
+      index === 49
+    ) {
+      let shortDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      let forecast = response.data.list[index];
+      let today = shortDay[new Date(forecast.dt * 1000).getDay()];
+
+      forecastElement.innerHTML += `
     <div class="col-2">
-      <h3>${formatHours(forecast.dt * 1000)}</h3>
+      <h3>${today}</h3>
       <img src="http://openweathermap.org/img/wn/${
         forecast.weather[0].icon
       }@2x.png"/>
       <div class="weather-forecast-temperature">
         <strong>${Math.round(forecast.main.temp_max)}° </strong>${Math.round(
-      forecast.main.temp_min
-    )}°
+        forecast.main.temp_min
+      )}°
       </div>
     </div>`;
+    }
   }
 }
 
