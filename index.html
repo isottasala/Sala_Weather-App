@@ -18,7 +18,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Sala Weather App</title>
   </head>
-  <body>
+  <body id="image">
     <div class="container">
       <div class="weather-app">
         <form id="search-form" class="mb-3">
@@ -33,19 +33,15 @@
               />
             </div>
             <div class="col-3">
-              <input
-                type="submit"
-                value="Search"
-                class="btn btn-primary w-100"
-              />
+              <input type="submit" value="Search" class="btn btn-dark" />
             </div>
           </div>
         </form>
         <div class="overview">
           <h1 id="city"></h1>
           <ul>
-            <li>Last updated: <span id="date"></span></li>
-            <li id="description"></li>
+            <li class="result-date">Last updated: <span id="date"></span></li>
+            <li id="description" class="result-description"></li>
           </ul>
           <div class="row">
             <div class="col-6">
@@ -68,7 +64,7 @@
           <div class="row weather-forecast" id="forecast"></div>
         </div>
       </div>
-      <small>
+      <small class="code">
         <a href="https://github.com/isottasala/Sala_Weather-App" target="_blank"
           >Open-source Code</a
         >

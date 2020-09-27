@@ -60,20 +60,13 @@ function displayForecast(response) {
   let forecast = null;
 
   for (let index = 0; index < response.data.list.length; index++) {
-    if (
-      index === 9 ||
-      index === 17 ||
-      index === 25 ||
-      index === 33 ||
-      index === 41 ||
-      index === 49
-    ) {
+    if (index === 1 || index === 9 || index === 17 || index === 25) {
       let shortDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       let forecast = response.data.list[index];
       let today = shortDay[new Date(forecast.dt * 1000).getDay()];
 
       forecastElement.innerHTML += `
-    <div class="col-2">
+    <div class="col-3">
       <h3>${today}</h3>
       <img src="http://openweathermap.org/img/wn/${
         forecast.weather[0].icon
