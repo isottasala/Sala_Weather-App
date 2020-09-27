@@ -61,7 +61,15 @@ function displayForecast(response) {
 
   for (let index = 0; index < response.data.list.length; index++) {
     if (index === 1 || index === 9 || index === 17 || index === 25) {
-      let shortDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      let shortDay = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
       let forecast = response.data.list[index];
       let today = shortDay[new Date(forecast.dt * 1000).getDay()];
 
