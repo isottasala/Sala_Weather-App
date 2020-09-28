@@ -59,6 +59,27 @@ function displayForecast(response) {
   forecastElement.innerHTML = null;
   let forecast = null;
 
+  for (let index = 0; index < 4; index++) {
+    let forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-3">
+      <h3>${formatHours(forecast.dt * 1000)}</h3>
+      <img src="http://openweathermap.org/img/wn/${
+        forecast.weather[0].icon
+      }@2x.png"/>
+      <div class="weather-forecast-temperature">
+        <strong>${Math.round(forecast.main.temp_max)}° </strong>${Math.round(
+      forecast.main.temp_min
+    )}°
+      </div>
+    </div>`;
+  }
+}
+function displayDaily(response) {
+  let dailyElement = document.querySelector("#daily");
+  dailyElement.innerHTML = null;
+  let daily = null;
+
   for (let index = 0; index < response.data.list.length; index++) {
     if (index === 1 || index === 9 || index === 17 || index === 25) {
       let shortDay = [
@@ -70,18 +91,18 @@ function displayForecast(response) {
         "Friday",
         "Saturday",
       ];
-      let forecast = response.data.list[index];
-      let today = shortDay[new Date(forecast.dt * 1000).getDay()];
+      let daily = response.data.list[index];
+      let today = shortDay[new Date(daily.dt * 1000).getDay()];
 
-      forecastElement.innerHTML += `
+      dailyElement.innerHTML += `
     <div class="col-3">
       <h3>${today}</h3>
       <img src="http://openweathermap.org/img/wn/${
-        forecast.weather[0].icon
+        daily.weather[0].icon
       }@2x.png"/>
       <div class="weather-forecast-temperature">
-        <strong>${Math.round(forecast.main.temp_max)}° </strong>${Math.round(
-        forecast.main.temp_min
+        <strong>${Math.round(daily.main.temp_max)}° </strong>${Math.round(
+        daily.main.temp_min
       )}°
       </div>
     </div>`;
@@ -97,6 +118,10 @@ function search(city) {
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayDaily);
+  console.log(displayDaily);
 }
 function handleSubmit(event) {
   event.preventDefault();

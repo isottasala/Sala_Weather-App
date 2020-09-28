@@ -56,7 +56,10 @@ li:first-letter {
   margin-bottom: 20px;
 }
 .col-6 {
-  padding: 40px;
+  padding: 23px 33px 23px 45px;
+}
+.text {
+  padding: 15px;
 }
 .weather-temperature img {
   margin-right: 5px;
@@ -89,7 +92,11 @@ li:first-letter {
   text-align: center;
   height: 15px;
   line-height: 15px;
-  padding-top: 7px;
+}
+.text {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 650;
 }
 .weather-forecast img {
   display: block;
@@ -109,5 +116,5 @@ li:first-letter {
 }
 
 .code {
-  color: #68dcd8;
+  color: rgb(33, 33, 33);
 }
