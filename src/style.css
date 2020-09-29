@@ -3,7 +3,7 @@ body {
   background-image: url("https://images.unsplash.com/photo-1495757450029-09dbedacbc36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1789&q=80");
 }
 .weather-app {
-  max-width: 400px;
+  max-width: 500px;
   margin: 30px 0 auto;
   padding: 20px;
   border: 2px solid #68dcd8;
