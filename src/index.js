@@ -87,24 +87,24 @@ function findDay(timestamp) {
     "Saturday",
   ];
   let now = shortDay[time.getDay()];
-  retun`${now}`;
+  return `${now}`;
 }
 function displayDaily(response) {
-  let dailyElement = document.querySelector("#daily");
-  dailyElement.innerHTML = null;
-  let daily = null;
+  let datesElement = document.querySelector("#daily");
+  datesElement.innerHTML = null;
+  let dates = null;
 
-  for (let index = 0; index < 6; index++) {
-    let daily = response.data.list[index];
-    dailyElement.innerHTML += `
-    <div class="col-2">
-      <h3>${findDay(daily.dt * 1000)}</h3>
+  for (let index = 0; index < 4; index++) {
+    let dates = response.data.daily[index];
+    datesElement.innerHTML += `
+    <div class="col-3">
+      <h3>${findDay(dates.dt * 1000)}</h3>
       <img src="http://openweathermap.org/img/wn/${
-        daily.weather[0].icon
+        dates.weather[0].icon
       }@2x.png"/>
       <div class="weather-forecast-temperature">
-        <strong>${Math.round(daily.main.temp_max)}° </strong>${Math.round(
-      daily.main.temp_min
+        <strong>${Math.round(dates.temp.max)}° </strong>${Math.round(
+      dates.temp.min
     )}°
       </div>
     </div>`;
@@ -128,7 +128,7 @@ function find(response) {
   let lat = response.data.city.coord.lat;
   let lon = response.data.city.coord.lon;
   let apiKey = "19e46ed21fd5be02cd8dd3836eaacd85";
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=metric`;
+  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=metric`;
   axios.get(url).then(displayDaily);
 }
 
