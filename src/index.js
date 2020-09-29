@@ -1,3 +1,4 @@
+// Time Stamp Date
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let day = [
@@ -13,6 +14,7 @@ function formatDate(timestamp) {
   return `${days} ${formatHours(timestamp)} `;
 }
 
+// Time Stamp Hour
 function formatHours(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -26,6 +28,23 @@ function formatHours(timestamp) {
   return `${hours}:${minutes}`;
 }
 
+// Time Stamp Forecast Date
+function findDay(timestamp) {
+  let time = new Date(timestamp);
+  let shortDay = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let now = shortDay[time.getDay()];
+  return `${now}`;
+}
+
+// Get Current Temperature
 function displayTemperature(response) {
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
@@ -54,6 +73,7 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
+// Get Forecast Houtly Temperature
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
@@ -75,20 +95,8 @@ function displayForecast(response) {
     </div>`;
   }
 }
-function findDay(timestamp) {
-  let time = new Date(timestamp);
-  let shortDay = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let now = shortDay[time.getDay()];
-  return `${now}`;
-}
+
+// Get Forecast Daily Temperature
 function displayDaily(response) {
   let datesElement = document.querySelector("#daily");
   datesElement.innerHTML = null;
@@ -111,6 +119,7 @@ function displayDaily(response) {
   }
 }
 
+// Get City thruough API Call
 function search(city) {
   let apiKey = "19e46ed21fd5be02cd8dd3836eaacd85";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -124,6 +133,7 @@ function search(city) {
   axios.get(apiUrl).then(find);
 }
 
+// Get Lat/Lon thruough API Call
 function find(response) {
   let lat = response.data.city.coord.lat;
   let lon = response.data.city.coord.lon;
@@ -132,12 +142,14 @@ function find(response) {
   axios.get(url).then(displayDaily);
 }
 
+// Adding Event listener to Bar
 function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
 
+// Display Fahrenheit
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
@@ -147,6 +159,7 @@ function displayFahrenheitTemperature(event) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
+// Display Celsius
 function displayCelsiusTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
@@ -166,5 +179,6 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
+// Defaul Values
 search("New York");
 find(40.73, -73.93);
