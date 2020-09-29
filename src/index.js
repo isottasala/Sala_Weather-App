@@ -80,8 +80,7 @@ function displayDaily(response) {
   dailyElement.innerHTML = null;
   let daily = null;
 
-  for (let index = 0; index < response.data.list.length; index++) {
-    if (index === 1 || index === 9 || index === 17 || index === 25) {
+  for (let index = 0; index < 4; index++) {
       let shortDay = [
         "Sunday",
         "Monday",
@@ -121,8 +120,18 @@ function search(city) {
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayDaily);
-  console.log(displayDaily);
 }
+
+function find(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  axios.get(url).then(displayDaily);
+  console.log(url);
+}
+function getCurrentPosition(position) {
+  navigator.geolocation.getCurrentPosition(find);
+}
+
 function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
