@@ -2,15 +2,18 @@ body {
   font-family: arial, helvetica, sans-serif;
   background-image: url("https://images.unsplash.com/photo-1495757450029-09dbedacbc36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1789&q=80");
 }
+.container {
+  margin-top: 20px;
+}
 .weather-app {
   max-width: 500px;
-  margin: 30px 0 auto;
+  margin: 0 auto;
   padding: 20px;
   border: 2px solid #68dcd8;
   border-radius: 10px;
   background-color: #a2dcd8;
   opacity: 0.8;
-  max-height: 999px;
+  display: block;
 }
 h1 {
   color: #ffffff;
